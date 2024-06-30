@@ -1,15 +1,17 @@
 
-import React from 'react'
+
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Signup from './components/Signup'
-import Signin from './components/Signin'
-import Blog from './components/Blog'
+import Signup from './pages/Signup'
+import Signin from './pages/Signin'
+import Blog from './pages/Blog'
+import DarkModeToggle from './components/DarkModeToggle'
 
 function App() {
 
   return (
-    <div className='text-2xl bg-red-300 text-green-200 font-bold'>
+    <div className=''>
+      <DarkModeToggle/>
     <BrowserRouter>
         <Routes>
           <Route path="/signup" element={<Signup />} />
