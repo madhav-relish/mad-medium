@@ -59,12 +59,12 @@ blogRouter.post('/', async (c) => {
 	}).$extends(withAccelerate())
 
 	const body = await c.req.json()
-	
+
 	const { success } = createPost.safeParse(body)
-	
-	if(!success){
+
+	if (!success) {
 		c.status(400)
-		return c.json({error: "Invalid inputs"})
+		return c.json({ error: "Invalid inputs" })
 	}
 	const post = await prisma.post.create({
 		data: {
@@ -89,9 +89,9 @@ blogRouter.put('/', async (c) => {
 
 	//Validating the body
 	const { success } = updatePost.safeParse(body)
-	if(!success){
+	if (!success) {
 		c.status(400)
-		return c.json({error: "invalid input"})
+		return c.json({ error: "invalid input" })
 	}
 	const post = await prisma.post.update({
 		//Find the post
