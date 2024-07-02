@@ -13,7 +13,7 @@ const CustomLabelInput = ({label, placeholder, type="text", onChange} : labelInp
   return (
     <LabelInputContainer>
     <Label htmlFor={placeholder}>{label}</Label>
-    <Input onChange={(e)=>onChange(label,e)} id={placeholder} placeholder={placeholder} type={type} />
+    <Input className='z-50' onChange={(e)=>onChange(label,e)} id={placeholder} placeholder={placeholder} type={type} />
   </LabelInputContainer>
   )
 }
