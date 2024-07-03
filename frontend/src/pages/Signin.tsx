@@ -33,8 +33,9 @@ const Signin = () => {
         `${BACKEND_URL}/api/v1/user/signin`,
         signinData
       );
-      console.log(response.data);
-      navigate("/blog");
+      // console.log(response.data);
+      localStorage.setItem("accessToken", response.data.token)
+      navigate("/blogs");
     } catch (error) {
       console.error("Error while signinup::", error);
     }
