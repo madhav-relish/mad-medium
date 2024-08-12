@@ -12,6 +12,11 @@ export const userRouter = new Hono<{
   };
 }>();
 
+interface CustomError extends Error {
+  code?: string;
+}
+
+
 userRouter.post("/signup", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env?.DATABASE_URL,
@@ -19,6 +24,7 @@ userRouter.post("/signup", async (c) => {
 
   const body = await c.req.json();
   const { success } = signinInput.safeParse(body);
+
   if (!success) {
     c.status(400);
     return c.json({ error: "invalid input" });
@@ -27,17 +33,24 @@ userRouter.post("/signup", async (c) => {
   try {
     const user = await prisma.user.create({
       data: {
-        email: body.email,
-        password: body.password,
+        email: body?.email,
+        password: body?.password,
+        name: body?.name
       },
     });
 
+    console.log(user)
     const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
 
     return c.json({ jwt });
   } catch (e) {
+    console.log(e)
+    if ((e as any).code === "P2002") {
+      c.status(400);
+      return c.json({ error: "Email already exists!" });
+    }
     c.status(403);
-    return c.json({ error: "error while signing up" });
+    return c.json({ error: "error while signing up", e });
   }
 });
 
