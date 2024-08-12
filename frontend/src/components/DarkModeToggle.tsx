@@ -1,4 +1,5 @@
 
+import { IconMoon, IconSun } from '@tabler/icons-react';
 import React, { useState, useEffect } from 'react';
 
 const DarkModeToggle: React.FC = () => {
@@ -24,8 +25,8 @@ const DarkModeToggle: React.FC = () => {
   };
 
   return (
-    <button onClick={toggleDarkMode}>
-      {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+    <button className=' transition-transform' onClick={toggleDarkMode}>
+      {isDarkMode ?  <IconSun/> : <IconMoon/>}
     </button>
   );
 };

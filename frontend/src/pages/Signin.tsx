@@ -4,7 +4,7 @@ import AuthBackground from "../components/auth/AuthBackground";
 import AuthCardBody from "../components/auth/AuthCardBody";
 import { BottomGradient } from "../components/ui/BottomGradient";
 import { BACKEND_URL } from "../config";
-import { FormEvent, SyntheticEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import { SigninInput } from "@madhavsingh203/mad-medium-common";
 import { Link, useNavigate } from "react-router-dom";
 
