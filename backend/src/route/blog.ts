@@ -70,7 +70,7 @@ blogRouter.post('/', async (c) => {
 		data: {
 			title: body.title,
 			content: body.content,
-			authorId: userId
+			authorId: userId,
 		}
 	})
 
@@ -106,7 +106,29 @@ blogRouter.put('/', async (c) => {
 		}
 	})
 
-	return c.text('Post updated successfully')
+	return c.json({msg: "Post updated successfully!", post_id: post.id})
+})
+
+blogRouter.delete('/', async (c) => {
+	const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL
+	}).$extends(withAccelerate())
+	// Get the userId
+	const userId = c.get('userId')
+
+	//get the body
+	const {id} = c.req.query()
+
+
+	const post = await prisma.post.delete({
+		//Find the post
+		where: {
+			authorId: userId,
+			id: id
+		},
+	})
+
+	return c.json({msg: "Post deleted successfully!", post_id: post.id})
 })
 
 blogRouter.get('/bulk', async (c) => {
