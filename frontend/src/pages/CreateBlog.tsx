@@ -3,13 +3,17 @@ import { CustomTextEditor } from "../components/RichTextEditor";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { CreatePost } from "@madhavsingh203/mad-medium-common";
+import { enqueueSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 
 export const CreateBlog = () => {
-  console.log("Page loaded");
+ 
   const [formData, setFormData] = useState<CreatePost>({
     title: "",
     content: "",
   });
+
+  const navigate = useNavigate()
 
   const handleSubmit = async () => {
     try {
@@ -20,6 +24,8 @@ export const CreateBlog = () => {
         },
       });
       console.log(response.data);
+      enqueueSnackbar("Blog published successfully", {variant:"success"})
+      navigate(`/blog/${response.data.id}`)
     } catch (error) {
       console.error("An error occured while submitting the blog", error);
     }
@@ -32,23 +38,23 @@ export const CreateBlog = () => {
 //         We can simply move the button to CustomTextEditor and onsubmit pass the values here and update them
 
   return (
-    <div className="p-6 flex flex-col justify-center items-center">
+    <div className="p-6 flex flex-col  items-center justify-center">
+      <div className="flex flex-col  items-center justify-center">
+
       <input
-        className="w-full p-2"
+        className="w-full max-w-[700px] p-2"
         placeholder="Title"
         value={formData.title}
         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-      />
-      <div className="max-w-[700px] min-h-[300px] mt-4 overflow-y-auto">
+        />
+      <div className="max-w-[700px]  mt-4 overflow-y-auto">
         <CustomTextEditor content={formData.content} setContent={setFormData} />
       </div>
-      <button className="border rounded-lg p-2" onClick={handleSubmit}>
+      <button className="border rounded-lg p-2 mt-4 hover:bg-white hover:text-black self-end" onClick={handleSubmit}>
         Publish
       </button>
-      {/* <div
-        className="w-full"
-        dangerouslySetInnerHTML={{ __html: formData.content }}
-      ></div> */}
+        </div>
+
     </div>
   );
 };

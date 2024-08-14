@@ -9,7 +9,7 @@ import { ThemeContext } from './context/ThemeContext.tsx';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeContext.Provider value='dark'>
-
+    
     <App />
     </ThemeContext.Provider>
   </React.StrictMode>,

@@ -9,6 +9,7 @@ import { MantineProvider } from "@mantine/core";
 import { useContext } from "react";
 import { ThemeContext } from "./context/ThemeContext";
 import { Header } from "./components/Header/Header";
+import { SnackbarProvider } from 'notistack'
 
 function App() {
   const theme = useContext(ThemeContext);
@@ -16,8 +17,10 @@ function App() {
   return (
     <div className="">
       <MantineProvider forceColorScheme={theme === "light" ? "light" : "dark"}>
-        <Header />
+        <SnackbarProvider>
+
         <BrowserRouter>
+        <Header />
           <Routes>
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
@@ -26,6 +29,7 @@ function App() {
             <Route path="/create-blog" element={<CreateBlog />} />
           </Routes>
         </BrowserRouter>
+        </SnackbarProvider>
       </MantineProvider>
     </div>
   );

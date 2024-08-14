@@ -35,6 +35,8 @@ const Signin = () => {
       );
       // console.log(response.data);
       localStorage.setItem("accessToken", response.data.token)
+      localStorage.setItem('username', response.data.username)
+      localStorage.setItem('user_id', response.data.id)
       navigate("/blogs");
     } catch (error) {
       console.error("Error while signinup::", error);

@@ -1,5 +1,5 @@
 import { RichTextEditor, Link } from '@mantine/tiptap';
-import { useEditor } from '@tiptap/react';
+import { BubbleMenu, FloatingMenu, useEditor } from '@tiptap/react';
 import Highlight from '@tiptap/extension-highlight';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
@@ -35,11 +35,42 @@ useEffect(()=>{
 
   return (
     <RichTextEditor classNames={{
-        root: 'min-h-96 max-h-96',
-        content: 'max-h-96 min-h-96',
-        
+       root: "max-h-[500px] overflow-y-auto",        
     }} editor={editor}>
       <RichTextEditor.Toolbar sticky stickyOffset={0}>
+    
+      <BubbleMenu editor={editor}>
+        <RichTextEditor.ControlsGroup>
+          <RichTextEditor.Bold />
+          <RichTextEditor.Italic />
+          <RichTextEditor.Underline />
+          <RichTextEditor.Strikethrough />
+          <RichTextEditor.ClearFormatting />
+          <RichTextEditor.Highlight />
+          <RichTextEditor.Code />
+          <RichTextEditor.H1 />
+          <RichTextEditor.H2 />
+          <RichTextEditor.H3 />
+          <RichTextEditor.H4 />
+        </RichTextEditor.ControlsGroup>
+        </BubbleMenu>
+
+        <FloatingMenu editor={editor}>
+          <RichTextEditor.ControlsGroup>
+          <RichTextEditor.Bold />
+          <RichTextEditor.Italic />
+          <RichTextEditor.Underline />
+          <RichTextEditor.Strikethrough />
+          <RichTextEditor.ClearFormatting />
+          <RichTextEditor.Highlight />
+          <RichTextEditor.Code />
+          <RichTextEditor.H1 />
+          <RichTextEditor.H2 />
+          <RichTextEditor.H3 />
+          <RichTextEditor.H4 />
+          </RichTextEditor.ControlsGroup>
+        </FloatingMenu>
+
         <RichTextEditor.ControlsGroup>
           <RichTextEditor.Bold />
           <RichTextEditor.Italic />
