@@ -7,6 +7,7 @@ import { BACKEND_URL } from "../config";
 import { Link, useNavigate } from "react-router-dom";
 import AuthCardBody from "../components/auth/AuthCardBody";
 import { BottomGradient } from "../components/ui/BottomGradient";
+import { Button } from "@mantine/core";
 
 
 const Signup = () => {
@@ -29,11 +30,11 @@ const Signup = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(
+      await axios.post(
         `${BACKEND_URL}/api/v1/user/signup`,
         signupData
       );
-      console.log(response.data);
+      // console.log(response.data);
       navigate("/signin");
     } catch (error) {
       console.error("Error while signinup::", error);
@@ -74,8 +75,13 @@ const Signup = () => {
           Sign Up
           <BottomGradient/>
         </button>
-        <div className="text-white h-fit text-sm font-light mt-2">
+        <div className="text-white h-fit text-sm font-light mt-2 flex justify-between items-center">
           <p>Already a member? <Link to={'/signin'} className="underline">Signin Here</Link></p>
+           <Button variant="transparent" className="p-0" onClick={()=>{
+           navigate('/signin')
+          }}>
+            Login as a guest
+          </Button>
         </div>
       </AuthCardBody>
           </div>
