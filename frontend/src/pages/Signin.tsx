@@ -7,6 +7,7 @@ import { BACKEND_URL } from "../config";
 import { FormEvent, useState } from "react";
 import { SigninInput } from "@madhavsingh203/mad-medium-common";
 import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@mantine/core";
 
 const Signin = () => {
   const [signinData, setSigninData] = useState<SigninInput>({
@@ -22,26 +23,35 @@ const Signin = () => {
     e.preventDefault();
     setSigninData({
       ...signinData,
-      [name.toLocaleLowerCase()]: e.target.value,
+      [name.toLowerCase()]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement> ) => {
-    e.preventDefault()
+  const handleSubmit = async (
+    e?: FormEvent<HTMLFormElement>,
+    isGuest = false
+  ) => {
+    e?.preventDefault();
+
+    // Check if it's a guest login and set the data accordingly
+    const dataToSubmit = isGuest
+      ? { email: "guestuser@gmail.com", password: "guest@1234" }
+      : signinData;
+
     try {
       const response = await axios.post(
         `${BACKEND_URL}/api/v1/user/signin`,
-        signinData
+        dataToSubmit
       );
-      // console.log(response.data);
-      localStorage.setItem("accessToken", response.data.token)
-      localStorage.setItem('username', response.data.username)
-      localStorage.setItem('user_id', response.data.id)
+      localStorage.setItem("accessToken", response.data.token);
+      localStorage.setItem("username", response.data.username);
+      localStorage.setItem("user_id", response.data.id);
       navigate("/blogs");
     } catch (error) {
-      console.error("Error while signinup::", error);
+      console.error("Error while signing in:", error);
     }
   };
+
   return (
     <AuthBackground>
       <div className="absolute inset-0 flex items-center justify-center z-50">
@@ -49,7 +59,7 @@ const Signin = () => {
           <h4 className="text-black text-4xl dark:text-white text-center">
             Sign In
           </h4>
-          <form onSubmit={(e)=>handleSubmit(e)}>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <div className="flex flex-col gap-4">
               <CustomLabelInput
                 onChange={handleInputChange}
@@ -72,13 +82,20 @@ const Signin = () => {
               <BottomGradient />
             </button>
           </form>
-          <div className="text-white h-fit text-sm font-light mt-2">
+          <div className="text-white h-fit text-sm font-light mt-2 flex justify-between items-center">
             <p>
               Not a member?{" "}
               <Link to={"/signup"} className="underline">
                 Signup Here
               </Link>
             </p>
+            <Button
+              variant="transparent"
+              className="p-0"
+              onClick={() => handleSubmit(undefined, true)}
+            >
+              Login as a guest
+            </Button>
           </div>
         </AuthCardBody>
       </div>
