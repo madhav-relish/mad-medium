@@ -76,7 +76,7 @@ const Signup = () => {
           <BottomGradient/>
         </button>
         <div className="text-white h-fit text-sm font-light mt-2 flex justify-between items-center">
-          <p>Already a member? <Link to={'/signin'} className="underline">Signin Here</Link></p>
+          <p className="font-semibold mt-4">Already a member? <Link to={'/signin'} className="underline">Signin Here</Link></p>
            <Button variant="transparent" className="p-0" onClick={()=>{
            navigate('/signin')
           }}>

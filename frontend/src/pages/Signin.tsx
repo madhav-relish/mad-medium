@@ -83,7 +83,7 @@ const Signin = () => {
             </button>
           </form>
           <div className="text-white h-fit text-sm font-light mt-2 flex justify-between items-center">
-            <p>
+            <p className="font-semibold mt-4">
               Not a member?{" "}
               <Link to={"/signup"} className="underline">
                 Signup Here
