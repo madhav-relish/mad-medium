@@ -24,7 +24,7 @@ export function Header() {
   );
 
   return (
-    <Box>
+    <Box className="z-50">
       <header className={classes.header}>
         <Group py={2} justify="space-between" h="100%">
           <h3>Mad-Medium</h3>

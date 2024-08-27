@@ -43,7 +43,7 @@ const Signup = () => {
 
   return (
     <AuthBackground>
-     <div className="absolute inset-0 flex items-center justify-center z-50">
+     <div className="absolute inset-0 flex items-center justify-center z-50 px-4">
 
       <AuthCardBody>
         <h4 className="text-black text-4xl dark:text-white text-center">Signup</h4>

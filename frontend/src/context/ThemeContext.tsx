@@ -19,6 +19,15 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
+        // Apply the theme class to the root element
+        const rootElement = document.documentElement;
+        if (theme === 'dark') {
+          rootElement.classList.add('dark');
+        } else {
+          rootElement.classList.remove('dark');
+        }
+
+        // Store the theme in localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);
 
