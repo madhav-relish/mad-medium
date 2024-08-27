@@ -4,13 +4,12 @@ import App from './App.tsx'
 import './index.css'
 import '@mantine/tiptap/styles.css';
 import '@mantine/core/styles.css';
-import { ThemeContext } from './context/ThemeContext.tsx';
+import { ThemeProvider } from './context/ThemeContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeContext.Provider value='dark'>
-    
+   <ThemeProvider>
     <App />
-    </ThemeContext.Provider>
+   </ThemeProvider>
   </React.StrictMode>,
 )

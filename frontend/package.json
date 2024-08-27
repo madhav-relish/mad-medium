@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@madhavsingh203/mad-medium-common": "^1.0.0",
+    "@madhavsingh203/mad-medium-common": "^1.0.2",
     "@mantine/core": "^7.11.1",
     "@mantine/hooks": "^7.11.1",
     "@mantine/tiptap": "^7.11.1",
@@ -18,6 +18,7 @@
     "@tabler/icons-react": "^3.7.0",
     "@tiptap/extension-highlight": "^2.4.0",
     "@tiptap/extension-link": "^2.4.0",
+    "@tiptap/extension-placeholder": "^2.6.4",
     "@tiptap/extension-subscript": "^2.4.0",
     "@tiptap/extension-superscript": "^2.4.0",
     "@tiptap/extension-text-align": "^2.4.0",
@@ -39,7 +40,7 @@
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.16.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",

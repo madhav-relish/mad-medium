@@ -6,6 +6,7 @@ import Underline from '@tiptap/extension-underline';
 import TextAlign from '@tiptap/extension-text-align';
 import Superscript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
+import Placeholder from '@tiptap/extension-placeholder';
 import { useEffect } from 'react';
 
   interface CustomTextEditorProps {
@@ -22,6 +23,7 @@ export function CustomTextEditor({content, setContent}: CustomTextEditorProps) {
       SubScript,
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
+      Placeholder.configure({ placeholder: 'Write your blog here!!!' })
     ],
     content,
     

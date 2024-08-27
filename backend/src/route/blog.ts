@@ -71,6 +71,7 @@ blogRouter.post('/', async (c) => {
 			title: body.title,
 			content: body.content,
 			authorId: userId,
+			published: body.published
 		}
 	})
 
@@ -102,7 +103,8 @@ blogRouter.put('/', async (c) => {
 		//Update the post
 		data: {
 			title: body.title,
-			content: body.content
+			content: body.content,
+			published: body.published
 		}
 	})
 
@@ -136,7 +138,13 @@ blogRouter.get('/bulk', async (c) => {
 		datasourceUrl: c.env?.DATABASE_URL,
 	}).$extends(withAccelerate());
 
-	const posts = await prisma.post.findMany();
+	const {is_published} = c.req.query() 
+
+	const posts = await prisma.post.findMany({
+		where: {
+			published: is_published ? true : false
+		}
+	});
 
 	return c.json(posts)
 })
