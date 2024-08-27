@@ -15,20 +15,23 @@ interface EditBlogProps {
   title: string;
   content: string;
   id: number;
+  published: boolean
 }
 
-const EditBlog = ({ title, content, id }: EditBlogProps) => {
+const EditBlog = ({ title, content, id,published }: EditBlogProps) => {
   const [formData, setFormData] = useState({
     title: title,
     content: content,
     id: id,
+    published: published
   });
 
   const navigate = useNavigate();
   const token = localStorage.getItem("accessToken");
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (unpublish?:  boolean) => {
     try {
+      formData.published = unpublish ? false : true
       await axios.put(BACKEND_URL + `/api/v1/blog`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -42,7 +45,7 @@ const EditBlog = ({ title, content, id }: EditBlogProps) => {
     }
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async ( ) => {
     try {
       const response = await axios.delete(
         BACKEND_URL + `/api/v1/blog?id=${id}`,
@@ -85,14 +88,14 @@ const EditBlog = ({ title, content, id }: EditBlogProps) => {
           variant="light"
           color="green"
           className="border rounded-lg p-2"
-          onClick={handleSubmit}
+          onClick={()=>handleSubmit(false)}
         >
           Update &nbsp; <IconCircleCheck size={20} />
         </Button>
         <Button
           variant="light"
           color="blue"
-          onClick={() => alert("will be added soon!")}
+          onClick={() => handleSubmit(true)}
           className="border rounded-lg p-2"
         >
           Unpublish &nbsp; <IconCircleMinus size={20} />

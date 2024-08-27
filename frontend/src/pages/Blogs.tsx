@@ -14,12 +14,12 @@ const Blogs = () => {
   const fetchAllBlogs = async () => {
     try {
       const token = localStorage.getItem("accessToken");
-      const response = await axios.get(BACKEND_URL + `/api/v1/blog/bulk`, {
+      const response = await axios.get(BACKEND_URL + `/api/v1/blog/bulk?is_published=true`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
       setAllBlogs(response.data);
       setLoading(false);
     } catch (error) {
@@ -48,7 +48,7 @@ const Blogs = () => {
           <Loader color="blue" />{" "}
         </div>
       ) : (
-        <div className="flex gap-4 flex-wrap">
+        <div className="p-8 md:20 grid grid-cols-1 gap-x-6 gap-y-8 place-items-center lg:grid-cols-2 w-full">
           {allBlogs?.map((blog, idx) => (
             <BlogCard
               key={idx}

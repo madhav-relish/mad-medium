@@ -1,26 +1,37 @@
-import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Signup from "./pages/Signup";
-import Signin from "./pages/Signin";
-import Blog from "./pages/Blog";
-import Blogs from "./pages/Blogs";
-import { CreateBlog } from "./pages/CreateBlog";
-import { MantineProvider } from "@mantine/core";
-import { useContext } from "react";
-import { ThemeContext } from "./context/ThemeContext";
-import { Header } from "./components/Header/Header";
-import { SnackbarProvider } from 'notistack'
+import { useContext } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { MantineProvider, createTheme } from '@mantine/core';
+import { ThemeContext } from './context/ThemeContext';
+import { SnackbarProvider } from 'notistack';
+import Signup from './pages/Signup';
+import Signin from './pages/Signin';
+import Blog from './pages/Blog';
+import Blogs from './pages/Blogs';
+import { CreateBlog } from './pages/CreateBlog';
+import { Header } from './components/Header/Header';
 
 function App() {
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
+
+  const myTheme = createTheme({
+    black: "#000",
+    focusRing: "always",
+   
+    colors: {
+      dark: [
+        '#C9C9C9', '#b8b8b8', '#828282', '#696969', '#424242', '#3b3b3b', '#2e2e2e',
+        '#020817', '#1f1f1f', '#141414'
+      ],
+    },
+  });
+
+  console.log(theme)
 
   return (
-    <div className="">
-      <MantineProvider forceColorScheme={theme === "light" ? "light" : "dark"}>
-        <SnackbarProvider>
-
+    <MantineProvider theme={myTheme}  forceColorScheme={theme}>
+      <SnackbarProvider>
         <BrowserRouter>
-        <Header />
+          <Header />
           <Routes>
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
@@ -29,9 +40,8 @@ function App() {
             <Route path="/create-blog" element={<CreateBlog />} />
           </Routes>
         </BrowserRouter>
-        </SnackbarProvider>
-      </MantineProvider>
-    </div>
+      </SnackbarProvider>
+    </MantineProvider>
   );
 }
 

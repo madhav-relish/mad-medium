@@ -1,32 +1,29 @@
-
+import React, { useContext } from 'react';
 import { IconMoon, IconSun } from '@tabler/icons-react';
-import React, { useState, useEffect } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const DarkModeToggle: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
-    // Retrieve the theme preference from localStorage
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme ? savedTheme === 'dark' : true;
-  });
-
-  useEffect(() => {
-    // Apply the theme class to the root element
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDarkMode]);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <button className=' transition-transform' onClick={toggleDarkMode}>
-      {isDarkMode ?  <IconSun/> : <IconMoon/>}
+    <button
+      className="relative flex items-center justify-center w-10 h-10 transition-transform duration-300 ease-in-out"
+      onClick={toggleTheme}
+    >
+      <div
+        className={`absolute transition-opacity duration-300 ease-in-out ${
+          theme === 'dark' ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-90'
+        }`}
+      >
+        <IconSun size={24} />
+      </div>
+      <div
+        className={`absolute transition-opacity duration-300 ease-in-out ${
+          theme === 'dark' ? 'opacity-0 rotate-90' : 'opacity-100 rotate-0'
+        }`}
+      >
+        <IconMoon size={24} />
+      </div>
     </button>
   );
 };

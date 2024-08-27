@@ -10,7 +10,8 @@ interface BlogData {
   content: string;
   title: string;
   authorId: string;
-  id: number
+  id: number;
+  published: boolean;
 }
 const Blog = () => {
   const { id } = useParams<{ id: string }>();
@@ -46,7 +47,7 @@ const Blog = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-8">
       {editBlog ? (
-        <EditBlog title={blog?.title || ""} content={blog?.content || ""} id={blog?.id || 0}/>
+        <EditBlog title={blog?.title || ""} content={blog?.content || ""} id={blog?.id || 0} published={blog?.published || true}/>
       ) : (
         <>
          {/* Title */}
@@ -54,7 +55,7 @@ const Blog = () => {
          {/* Content */}
           <div
             id="content-block"
-            className="flex justify-center flex-col  px-8 md:px-16"
+            className="flex justify-center flex-col  px-8 md:px-16" 
           ></div>
         </>
       )}
