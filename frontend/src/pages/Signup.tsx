@@ -43,7 +43,7 @@ const Signup = () => {
 
   return (
     <AuthBackground>
-     <div className="absolute inset-0 flex items-center justify-center z-50">
+     <div className="absolute inset-0 flex items-center justify-center z-50 px-4">
 
       <AuthCardBody>
         <h4 className="text-black text-4xl dark:text-white text-center">Signup</h4>
@@ -76,7 +76,7 @@ const Signup = () => {
           <BottomGradient/>
         </button>
         <div className="text-white h-fit text-sm font-light mt-2 flex justify-between items-center">
-          <p>Already a member? <Link to={'/signin'} className="underline">Signin Here</Link></p>
+          <p className="font-semibold mt-4">Already a member? <Link to={'/signin'} className="underline">Signin Here</Link></p>
            <Button variant="transparent" className="p-0" onClick={()=>{
            navigate('/signin')
           }}>

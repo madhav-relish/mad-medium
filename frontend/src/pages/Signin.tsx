@@ -54,7 +54,7 @@ const Signin = () => {
 
   return (
     <AuthBackground>
-      <div className="absolute inset-0 flex items-center justify-center z-50">
+      <div className="absolute inset-0 flex items-center justify-center z-50 px-4">
         <AuthCardBody>
           <h4 className="text-black text-4xl dark:text-white text-center">
             Sign In
@@ -83,7 +83,7 @@ const Signin = () => {
             </button>
           </form>
           <div className="text-white h-fit text-sm font-light mt-2 flex justify-between items-center">
-            <p>
+            <p className="font-semibold mt-4">
               Not a member?{" "}
               <Link to={"/signup"} className="underline">
                 Signup Here
