@@ -13,10 +13,11 @@ interface BlogData {
   id: number;
   published: boolean;
 }
+
 const Blog = () => {
   const { id } = useParams<{ id: string }>();
   const [blog, setBlog] = useState<BlogData | null>(null);
-  const [editBlog, setEditBlog] = useState<boolean>(false)
+  const [editBlog, setEditBlog] = useState<boolean>(false);
 
   const fetchBlog = async () => {
     try {
@@ -29,39 +30,39 @@ const Blog = () => {
       console.log(response.data);
       setBlog(response.data);
     } catch (error) {
-      console.log("Error occured while fetching the blog::", error);
+      console.log("Error occurred while fetching the blog:", error);
     }
   };
 
-  const ele = document?.getElementById("content-block") || null;
-  if (ele) {
-    ele.innerHTML = blog?.content || "";
-  }
-
   useEffect(() => {
     fetchBlog();
-  }, []);
+  }, [id]);
 
-  const isUserAuthor = localStorage.getItem('user_id') === blog?.authorId
+  const isUserAuthor = localStorage.getItem("user_id") === blog?.authorId;
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8">
+    <div className="flex flex-col items-center justify-center gap-8 ">
       {editBlog ? (
-        <EditBlog title={blog?.title || ""} content={blog?.content || ""} id={blog?.id || 0} published={blog?.published || true}/>
+        <EditBlog
+          title={blog?.title || ""}
+          content={blog?.content || ""}
+          id={blog?.id || 0}
+          published={blog?.published || true}
+        />
       ) : (
         <>
-         {/* Title */}
+          {/* Title */}
           <h1 className="text-3xl font-semibold">{blog?.title}</h1>
-         {/* Content */}
+          {/* Content */}
           <div
-            id="content-block"
-            className="flex justify-center flex-col  px-8 md:px-16" 
-          ></div>
+            className=" flex justify-center max-w-[700px] flex-col px-8 md:px-16 content-block"
+            dangerouslySetInnerHTML={{ __html: blog?.content || "" }}
+          />
         </>
       )}
       {isUserAuthor && !editBlog && (
         <Button variant="default" onClick={() => setEditBlog(!editBlog)}>
-       Edit &nbsp; <IconEditCircle size={20}/> 
+          Edit &nbsp; <IconEditCircle size={20} />
         </Button>
       )}
     </div>

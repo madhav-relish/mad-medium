@@ -25,8 +25,6 @@ function App() {
     },
   });
 
-  console.log(theme)
-
   return (
     <MantineProvider theme={myTheme}  forceColorScheme={theme}>
       <SnackbarProvider>

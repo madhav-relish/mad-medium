@@ -26,7 +26,7 @@ export function Header() {
   return (
     <Box>
       <header className={classes.header}>
-        <Group py={10} justify="space-between" h="100%">
+        <Group py={2} justify="space-between" h="100%">
           <h3>Mad-Medium</h3>
 
           <Group h="100%" gap={0} visibleFrom="sm">
