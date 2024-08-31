@@ -10,6 +10,7 @@ import Blogs from './pages/Blogs';
 import { CreateBlog } from './pages/CreateBlog';
 import { Header } from './components/Header/Header';
 import Home from './pages/Home';
+import ManageBlogs from './pages/ManageBlogs';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -37,6 +38,7 @@ function App() {
             <Route path="/signin" element={<Signin />} />
             <Route path="/blog/:id" element={<Blog />} />
             <Route path="/blogs" element={<Blogs />} />
+            <Route path="/manage-blogs" element={<ManageBlogs />} />
             <Route path="/create-blog" element={<CreateBlog />} />
           </Routes>
         </BrowserRouter>

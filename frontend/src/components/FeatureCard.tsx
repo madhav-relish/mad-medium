@@ -9,7 +9,7 @@ const FeatureCard = ({
   firstImage,
   secondImage,
 }: {
-  img_url: string;
+  img_url?: string;
   title: string;
   description: string;
   mirror?: boolean;
