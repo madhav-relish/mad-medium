@@ -23,7 +23,7 @@ const FeatureCard = ({
         mirror ? "md:flex-row-reverse" : ""
       } items-center `}
     >
-      <div className={`relative ${mirror ? "-right-96" : "-left-96"}`}>
+      <div className={`md:relative ${mirror ? "-right-96" : "-left-96"}`}>
         <FeatureImageCard img_url={img_url} compare={compare} firstImage={firstImage} secondImage={secondImage}/>
       </div>
       <div className="mt-4 md:mt-0 md:ml-6 md:mr-6 flex flex-col justify-center">

@@ -25,16 +25,14 @@ const FeatureImageCard = ({
           <Compare autoplay firstImage={firstImage} secondImage={secondImage} />
         </div>
         ) : (
-
           <img
             alt="platform"
             loading="lazy"
             width="1080"
             height="1920"
             decoding="async"
-            className="rounded-lg border-2 border-slate-600 md:rounded-xl"
+            className="rounded-lg border-2 border-slate-600 w-[60vw] md:rounded-xl"
             style={{ color: "transparent" }}
-            // srcSet="/_next/image?url=%2Fplatform%2Fplatform.png&amp;w=1080&amp;q=75 1x, /_next/image?url=%2Fplatform%2Fplatform.png&amp;w=3840&amp;q=75 2x"
             src={img_url}
           />
         )}
