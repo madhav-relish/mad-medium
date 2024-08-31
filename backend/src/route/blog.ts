@@ -138,11 +138,28 @@ blogRouter.get('/bulk', async (c) => {
 		datasourceUrl: c.env?.DATABASE_URL,
 	}).$extends(withAccelerate());
 
-	const {is_published} = c.req.query() 
+	const {is_published, authorId} = c.req.query() 
 
 	const posts = await prisma.post.findMany({
 		where: {
-			published: is_published ? true : false
+			authorId: authorId,
+			published: Boolean(is_published)
+		}
+	});
+
+	return c.json(posts)
+})
+
+blogRouter.get('/all-of-author', async (c) => {
+	const prisma = new PrismaClient({
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+
+	const { authorId} = c.req.query() 
+
+	const posts = await prisma.post.findMany({
+		where: {
+			authorId: authorId,
 		}
 	});
 
