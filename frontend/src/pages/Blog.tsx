@@ -14,15 +14,24 @@ interface BlogData {
   published: boolean;
 }
 
-const Blog = () => {
+type BlogProps = {
+  blogId?: string
+}
+
+
+
+const Blog = (blogId: BlogProps) => {
   const { id } = useParams<{ id: string }>();
+  const currentBlogId = blogId.blogId ? blogId.blogId : id
   const [blog, setBlog] = useState<BlogData | null>(null);
   const [editBlog, setEditBlog] = useState<boolean>(false);
+
+  console.log(blogId)
 
   const fetchBlog = async () => {
     try {
       const token = localStorage.getItem("accessToken");
-      const response = await axios(BACKEND_URL + `/api/v1/blog/${id}`, {
+      const response = await axios(BACKEND_URL + `/api/v1/blog/${currentBlogId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -36,7 +45,8 @@ const Blog = () => {
 
   useEffect(() => {
     fetchBlog();
-  }, [id]);
+    setEditBlog(false)
+  }, [currentBlogId]);
 
   const isUserAuthor = localStorage.getItem("user_id") === blog?.authorId;
 

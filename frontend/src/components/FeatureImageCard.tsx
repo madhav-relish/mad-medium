@@ -6,7 +6,7 @@ const FeatureImageCard = ({
   firstImage,
   secondImage,
 }: {
-  img_url: string;
+  img_url?: string;
   compare?: boolean;
   firstImage?: string;
   secondImage?: string;
