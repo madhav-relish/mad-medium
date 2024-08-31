@@ -72,7 +72,7 @@ export function Sidebar() {
               ))
           ) : (
             <>
-              {blogs.map((blog) => (
+              {blogs?.map((blog) => (
                 <div
                   onClick={() => handleTitleClick(blog.id)}
                   key={blog.id}
