@@ -21,7 +21,7 @@ const BlogCard = ({ date, title, content, blogId }: BlogCardProps) => {
       <>
         <div  onClick={handleReadMore} className="rounded-xl border border-gray-400 bg-card text-card-foreground max-w-screen-md w-full cursor-pointer  transition-all hover:border-gray-500 shadow-lg dark:shadow-black/60">
           <div className="flex flex-col space-y-1.5 p-4">
-            <div className="flex flex-col sm:flex-row">
+            <div className="flex flex-col justify-center items-center sm:flex-row">
               <img
                 src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
                 className="min-h-[130px] sm:h-[130px] min-w-[130px] sm:w-[130px] rounded-xl"
