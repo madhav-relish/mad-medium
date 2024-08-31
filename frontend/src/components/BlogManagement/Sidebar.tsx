@@ -1,8 +1,9 @@
-import { AppShell, ScrollArea, Skeleton } from "@mantine/core";
+import { AppShell, Burger, Group, ScrollArea, Skeleton } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../../config";
 import Blog from "../../pages/Blog";
+import { IconLayoutSidebarLeftExpand } from "@tabler/icons-react";
 
 interface Blog {
   id: string;
@@ -13,7 +14,7 @@ interface Blog {
 }
 
 export function Sidebar() {
-  const [opened, ] = useDisclosure();
+  const [opened, { toggle }] = useDisclosure();
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentBlogId, setCurrentBlogId] = useState<string>("");
@@ -40,8 +41,6 @@ export function Sidebar() {
         const data = await response.json();
         setBlogs(data);
         setCurrentBlogId(data[0].id);
-        
-        
       } catch (error) {
         // setError(error.message);
       } finally {
@@ -63,6 +62,17 @@ export function Sidebar() {
       padding="md"
     >
       <AppShell.Navbar p="md">
+        <AppShell.Section>
+          <Group h="100%" px="md">
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              hiddenFrom="sm"
+              size="sm"
+            />
+          </Group>
+        </AppShell.Section>
+
         <AppShell.Section grow component={ScrollArea}>
           {loading ? (
             Array(15)
@@ -87,7 +97,13 @@ export function Sidebar() {
           )}
         </AppShell.Section>
       </AppShell.Navbar>
-      <AppShell.Main><Blog blogId={currentBlogId}/></AppShell.Main>
+      <AppShell.Main pt={8}>
+        {" "}
+       {!opened && <div  onClick={toggle} className="md:hidden" >
+            <IconLayoutSidebarLeftExpand size={30}/>
+        </div> }
+        <Blog blogId={currentBlogId} />
+      </AppShell.Main>
     </AppShell>
   );
 }
