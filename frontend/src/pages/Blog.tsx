@@ -41,7 +41,7 @@ const Blog = () => {
   const isUserAuthor = localStorage.getItem("user_id") === blog?.authorId;
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8 ">
+    <div className="flex flex-col items-center justify-center gap-8 py-8">
       {editBlog ? (
         <EditBlog
           title={blog?.title || ""}
@@ -52,10 +52,10 @@ const Blog = () => {
       ) : (
         <>
           {/* Title */}
-          <h1 className="text-3xl font-semibold">{blog?.title}</h1>
+          <h1 className="text-3xl font-semibold max-w-[800px] text-center">{blog?.title}</h1>
           {/* Content */}
           <div
-            className=" flex justify-center max-w-[700px] flex-col px-8 md:px-16 content-block"
+            className=" flex justify-center max-w-[1080px] flex-col px-8 md:px-16 content-block"
             dangerouslySetInnerHTML={{ __html: blog?.content || "" }}
           />
         </>

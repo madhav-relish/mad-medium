@@ -31,7 +31,7 @@ export function Header() {
 
           <Group h="100%" gap={0} visibleFrom="sm">
             <a href="/blogs" className={classes.link}>
-              Home
+              Blogs
             </a>
 
             <a href="/create-blog" className={classes.link}>
@@ -81,16 +81,13 @@ export function Header() {
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 
-          <a href="#" className={classes.link}>
-            Home
-          </a>
+          <a href="/blogs" className={classes.link}>
+              Blogs
+            </a>
 
-          <a href="#" className={classes.link}>
-            Learn
-          </a>
-          <a href="#" className={classes.link}>
-            Academy
-          </a>
+            <a href="/create-blog" className={classes.link}>
+              Write a Blog
+            </a>
 
           <Divider my="sm" />
 
