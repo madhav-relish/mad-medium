@@ -12,10 +12,7 @@ import {
   Text,
   Avatar,
 } from "@mantine/core";
-
 import { useDisclosure } from "@mantine/hooks";
-import classes from "./Header.module.css";
-import DarkModeToggle from "../DarkModeToggle";
 import { useNavigate } from "react-router-dom";
 import {
   IconChevronDown,
@@ -24,6 +21,8 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 import cx from "clsx";
+import classes from "./Header.module.css";
+import DarkModeToggle from "../DarkModeToggle";
 
 export function Header() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -37,12 +36,17 @@ export function Header() {
 
   const userName = localStorage.getItem("username");
 
+  const handleSignOut = () => {
+    localStorage.removeItem("accessToken");
+    navigate("/signin");
+  };
+
   return (
     <AppShell>
       <AppShell.Header
         py={2}
         classNames={{
-          header: "opacity-95 backdrop-blur-3xl border-b ",
+          header: "opacity-95 backdrop-blur-3xl border-b",
         }}
       >
         <Box className="backdrop-blur-3xl">
@@ -74,7 +78,6 @@ export function Header() {
                     >
                       Sign in
                     </Button>
-
                     <Button onClick={() => navigate("/signup")}>Sign up</Button>
                   </>
                 ) : (
@@ -110,31 +113,18 @@ export function Header() {
                       </Button>
                     </Menu.Target>
                     <Menu.Dropdown>
-                      <Menu.Item leftSection={<IconNotebook color="orange"/>}>
-                        <Text
-                          onClick={() => {
-                            navigate("/manage-blogs");
-                          }}
-                        >
-                          Manage Blogs
-                        </Text>
+                      <Menu.Item
+                        leftSection={<IconNotebook color="orange" />}
+                        onClick={() => navigate("/manage-blogs")}
+                      >
+                        Manage Blogs
                       </Menu.Item>
-                      {
-                        <Menu.Item
-                          leftSection={
-                            <IconLogout color={"red"} stroke={1.5} />
-                          }
-                        >
-                          <Text
-                            onClick={() => {
-                              localStorage.removeItem("accessToken");
-                              navigate("/signin");
-                            }}
-                          >
-                            Sign out
-                          </Text>
-                        </Menu.Item>
-                      }
+                      <Menu.Item
+                        leftSection={<IconLogout color={"red"} stroke={1.5} />}
+                        onClick={handleSignOut}
+                      >
+                        Sign out
+                      </Menu.Item>
                     </Menu.Dropdown>
                   </Menu>
                 )}
@@ -160,33 +150,53 @@ export function Header() {
             <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
               <Divider my="sm" />
 
-              <a href="/blogs" className={classes.link}>
-                Blogs
-              </a>
+              {isLoggedIn && (
+                <>
+                  <a href="/blogs" className={classes.link}>
+                    Blogs
+                  </a>
 
-              <a href="/create-blog" className={classes.link}>
-                Write a Blog
-              </a>
-
-              <Divider my="sm" />
+                  <a href="/create-blog" className={classes.link}>
+                    Write a Blog
+                  </a>
+                  <a
+                    href="/manage-blogs"
+                    className={classes.link}
+                    onClick={closeDrawer}
+                  >
+                    Manage Blogs
+                  </a>
+                  <Divider my="sm" />
+                </>
+              )}
 
               <Group justify="center" grow pb="xl" px="md">
                 {!isLoggedIn ? (
                   <>
                     <Button
                       variant="default"
-                      onClick={() => navigate("/signin")}
+                      onClick={() => {
+                        navigate("/signin");
+                        closeDrawer();
+                      }}
                     >
                       Sign in
                     </Button>
 
-                    <Button onClick={() => navigate("/signup")}>Sign up</Button>
+                    <Button
+                      onClick={() => {
+                        navigate("/signup");
+                        closeDrawer();
+                      }}
+                    >
+                      Sign up
+                    </Button>
                   </>
                 ) : (
                   <Button
                     onClick={() => {
-                      localStorage.removeItem("accessToken");
-                      navigate("/signin");
+                      handleSignOut();
+                      closeDrawer();
                     }}
                   >
                     Sign out

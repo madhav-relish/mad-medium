@@ -7,7 +7,6 @@ import { BACKEND_URL } from "../config";
 import { FormEvent, useState } from "react";
 import { SigninInput } from "@madhavsingh203/mad-medium-common";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@mantine/core";
 
 const Signin = () => {
   const [signinData, setSigninData] = useState<SigninInput>({
@@ -82,20 +81,19 @@ const Signin = () => {
               <BottomGradient />
             </button>
           </form>
-          <div className="text-white h-fit text-sm font-light mt-2 flex justify-between items-center">
+          <div className="text-white h-fit text-sm font-light mt-2 flex justify-between items-center break-word">
             <p className="font-semibold mt-4">
               Not a member?{" "}
               <Link to={"/signup"} className="underline">
                 Signup Here
               </Link>
             </p>
-            <Button
-              variant="transparent"
-              className="p-0"
+            <p
+              className="p-0 break-normal text-blue-500 font-semibold mt-4 cursor-pointer hover:underline"
               onClick={() => handleSubmit(undefined, true)}
             >
               Login as a guest
-            </Button>
+            </p>
           </div>
         </AuthCardBody>
       </div>

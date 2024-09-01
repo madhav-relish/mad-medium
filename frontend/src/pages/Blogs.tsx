@@ -48,7 +48,7 @@ const Blogs = () => {
           <Loader color="blue" />{" "}
         </div>
       ) : (
-        <div className="p-8 md:20 grid grid-cols-1 gap-x-6 gap-y-8 place-items-center lg:grid-cols-2 w-full">
+        <div className="md:p-8 grid grid-cols-1 gap-x-6 gap-y-8 place-items-center lg:grid-cols-2 w-full">
           {allBlogs?.map((blog, idx) => (
             <BlogCard
               key={idx}

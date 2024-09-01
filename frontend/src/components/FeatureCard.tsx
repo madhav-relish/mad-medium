@@ -19,7 +19,7 @@ const FeatureCard = ({
 }) => {
   return (
     <div
-      className={` flex flex-col md:flex-row ${
+      className={` flex flex-col-reverse md:flex-row ${
         mirror ? "md:flex-row-reverse" : ""
       } items-center `}
     >
@@ -27,10 +27,10 @@ const FeatureCard = ({
         <FeatureImageCard img_url={img_url} compare={compare} firstImage={firstImage} secondImage={secondImage}/>
       </div>
       <div className="mt-4 md:mt-0 md:ml-6 md:mr-6 flex flex-col justify-center">
-        <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">
+        <h3 className="text-center text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">
           {title}
         </h3>
-        <p className="text-gray-700 dark:text-gray-300">{description}</p>
+        <p className="text-gray-700 px-2 md:px-4 dark:text-gray-300">{description}</p>
       </div>
     </div>
   );

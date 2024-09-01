@@ -26,7 +26,7 @@ const Blog = (blogId: BlogProps) => {
   const [blog, setBlog] = useState<BlogData | null>(null);
   const [editBlog, setEditBlog] = useState<boolean>(false);
 
-  console.log(blogId)
+  // console.log(blogId)
 
   const fetchBlog = async () => {
     try {
@@ -36,7 +36,7 @@ const Blog = (blogId: BlogProps) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
       setBlog(response.data);
     } catch (error) {
       console.log("Error occurred while fetching the blog:", error);
@@ -62,10 +62,10 @@ const Blog = (blogId: BlogProps) => {
       ) : (
         <>
           {/* Title */}
-          <h1 className="text-3xl font-semibold max-w-[800px] text-center">{blog?.title}</h1>
+          <h1 className="text-2xl md:text-3xl font-bold md:font-semibold max-w-[800px] text-center px-2">{blog?.title}</h1>
           {/* Content */}
           <div
-            className=" flex justify-center max-w-[1080px] flex-col px-8 md:px-16 content-block"
+            className=" flex justify-center max-w-[1080px] flex-col px-4 md:px-16 content-block"
             dangerouslySetInnerHTML={{ __html: blog?.content || "" }}
           />
         </>
