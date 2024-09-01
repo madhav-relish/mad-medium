@@ -31,7 +31,7 @@ const FeatureImageCard = ({
             width="1080"
             height="1920"
             decoding="async"
-            className="rounded-lg border-2 border-slate-600 w-[60vw] md:rounded-xl"
+            className="rounded-lg border-2 border-slate-600 w-[80vw] md:rounded-xl"
             style={{ color: "transparent" }}
             src={img_url}
           />

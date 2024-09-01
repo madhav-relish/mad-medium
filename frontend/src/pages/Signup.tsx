@@ -7,7 +7,6 @@ import { BACKEND_URL } from "../config";
 import { Link, useNavigate } from "react-router-dom";
 import AuthCardBody from "../components/auth/AuthCardBody";
 import { BottomGradient } from "../components/ui/BottomGradient";
-import { Button } from "@mantine/core";
 
 
 const Signup = () => {
@@ -77,11 +76,15 @@ const Signup = () => {
         </button>
         <div className="text-white h-fit text-sm font-light mt-2 flex justify-between items-center">
           <p className="font-semibold mt-4">Already a member? <Link to={'/signin'} className="underline">Signin Here</Link></p>
-           <Button variant="transparent" className="p-0" onClick={()=>{
-           navigate('/signin')
-          }}>
-            Login as a guest
-          </Button>
+        
+          <p
+              className="p-0 break-normal text-blue-500 font-semibold mt-4 cursor-pointer hover:underline"
+              onClick={()=>{
+                navigate('/signin')
+               }}
+            >
+              Login as a guest
+            </p>
         </div>
       </AuthCardBody>
           </div>

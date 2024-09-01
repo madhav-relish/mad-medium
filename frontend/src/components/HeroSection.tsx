@@ -37,7 +37,7 @@ const HeroSection = () => {
         <FeatureImageCard img_url={blog_img} />
       </div>
 
-      <div className="mt-40 space-y-8 flex flex-col gap-40">
+      <div className="mt-20 md:mt-40 md:space-y-8 flex flex-col gap-10 md:gap-40">
         <FeatureCard
           img_url={richtexteditor_img}
           title="Rich Text Editor"
