@@ -36,6 +36,7 @@ const Signup = () => {
       // console.log(response.data);
       navigate("/signin");
     } catch (error) {
+      
       console.error("Error while signinup::", error);
     }
   };

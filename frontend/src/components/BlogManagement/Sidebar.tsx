@@ -82,27 +82,45 @@ export function Sidebar() {
               ))
           ) : (
             <>
-              {blogs?.map((blog) => (
-                <div
-                  onClick={() => handleTitleClick(blog.id)}
-                  key={blog.id}
-                  className={`my-2 cursor-pointer p-4 rounded-xl ${
-                    currentBlogId === blog.id ? "bg-gray-800 text-white" : ""
-                  } hover:bg-gray-800 hover:text-white`}
-                >
-                  {blog.title}
-                </div>
-              ))}
+              {!loading && blogs.length === 0 ? (
+                <div>You don't have any blogs</div>
+              ) : (
+                blogs?.map((blog) => (
+                  <div
+                    onClick={() => handleTitleClick(blog.id)}
+                    key={blog.id}
+                    className={`my-2 cursor-pointer p-4 rounded-xl ${
+                      currentBlogId === blog.id ? "bg-gray-800 text-white" : ""
+                    } hover:bg-gray-800 hover:text-white`}
+                  >
+                    {blog.title}
+                  </div>
+                ))
+              )}
             </>
           )}
         </AppShell.Section>
       </AppShell.Navbar>
       <AppShell.Main pt={8}>
         {" "}
-       {!opened && <div  onClick={toggle} className="md:hidden" >
-            <IconLayoutSidebarLeftExpand size={30}/>
-        </div> }
-        <Blog blogId={currentBlogId} />
+        {!opened && (
+          <div onClick={toggle} className="md:hidden">
+            <IconLayoutSidebarLeftExpand size={30} />
+          </div>
+        )}
+        {blogs.length === 0 ? (
+          <div className="w-full h-screen flex flex-col justify-center items-center gap-5">
+            <h2 className="text-3xl font-bold">Uh oh!</h2>
+            <h4 className="text-xl">
+              Seems like you have not wrote any blogs yet
+            </h4>
+            <a className="text-lg text-blue-400 underline hover:text-blue-600 cursor-pointer">
+              Write a blog
+            </a>
+          </div>
+        ) : (
+          <Blog blogId={currentBlogId} />
+        )}
       </AppShell.Main>
     </AppShell>
   );
